@@ -41,15 +41,14 @@
         app:clickable_overlay="true"/>
 
     <com.leinardi.android.speeddial.SpeedDialView
-        android:id="@+id/fab"
+        android:id="@+id/fab_fragment_file_explorer_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="2dp"
         app:sdExpansionMode="top"
-        app:sdFabCloseSrc="@drawable/ic_close"
-        app:sdFabRotateOnToggle="true"
-        app:srcCompat="@drawable/ic_add" />
+        app:sdMainFabOpenedSrc="@drawable/ic_close"
+        app:sdMainFabClosedSrc="@drawable/ic_add" />
 
     <include
         android:id="@+id/bottom_bar"

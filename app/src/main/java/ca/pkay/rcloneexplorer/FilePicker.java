@@ -112,14 +112,20 @@ public class FilePicker extends AppCompatActivity implements    FilePickerAdapte
         filePickerAdapter = new FilePickerAdapter(this, fileList, destinationPickerType, findViewById(R.id.empty_folder_view));
         recyclerView.setAdapter(filePickerAdapter);
 
-        speedDialView = findViewById(R.id.fab);
+        speedDialView = findViewById(R.id.fab_activity_file_picker);
         if (!destinationPickerType) {
             speedDialView.setVisibility(View.INVISIBLE);
         }
-        speedDialView.setMainFabOnClickListener(new View.OnClickListener() {
+        speedDialView.setOnChangeListener(new SpeedDialView.OnChangeListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onMainActionSelected() {
                 fabClicked();
+                return false;
+            }
+
+            @Override
+            public void onToggleChanged(boolean isOpen) {
+
             }
         });
     }
@@ -502,6 +508,10 @@ public class FilePicker extends AppCompatActivity implements    FilePickerAdapte
             File[] extFiles = getExternalMediaDirs();
             String internalStorage = storageDirectories.get(0);
             for (File f : extFiles) {
+                if (f == null) {
+                    continue;
+                }
+
                 if (!f.getAbsolutePath().startsWith(internalStorage)) {
                     storageDirectories.add(f.getAbsolutePath());
                 }
